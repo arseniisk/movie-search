@@ -26,7 +26,7 @@ export default {
     async loadMovie(movieId) {
       const movieResult = await this.omdbApi.getById(movieId);
       if (this.handleError(movieResult)) return;
-      this.movie = movieResult.Search;
+      this.movie = movieResult;
     },
     handleError(result) {
       if (result.isError) {

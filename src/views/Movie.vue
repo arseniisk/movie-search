@@ -2,7 +2,7 @@
   <div class="columns is-multiline">
     <div class="column"></div>
     <div class="column is-12-mobile is-12-tablet is-8-desktop">
-      <div class="card">
+      <div v-if="movie" class="card">
         <div class="card-content">
           <div class="columns is-multiline">
             <!-- Poster -->
@@ -67,18 +67,14 @@
 import movieAccessMixin from "@/mixins/movieAccessMixin";
 import MovieYearTag from "@/components/MovieYearTag";
 import MovieTypeTag from "@/components/MovieTypeTag";
-import test from "@/data/dev-single-record-1";
 
 export default {
   name: "MoviesTable",
   mixins: [movieAccessMixin],
-  props: {},
   watch: {
     $route(to) {
       if (this.checkRouteParameter(to)) return;
-      //this.loadMovie(to.params.movieId);
-      this.movie = test;
-      console.log(this.movie);
+      this.loadMovie(to.params.movieId);
     },
   },
   components: {
@@ -104,7 +100,7 @@ export default {
   methods: {
     initialize() {
       if (this.checkRouteParameter(this.$route)) return;
-      this.movie = test;
+      this.loadMovie(this.$route.params.movieId);
     },
     // Check if movie ID parameter is passed
     checkRouteParameter(route) {

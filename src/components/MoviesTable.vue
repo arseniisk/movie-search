@@ -107,7 +107,10 @@ export default {
       return false;
     },
     viewMovieDetails(movieId) {
-      console.log(movieId);
+      this.$router.push({
+        name: "Movie",
+        params: { movieId },
+      });
     },
   },
 };
