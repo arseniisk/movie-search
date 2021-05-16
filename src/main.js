@@ -5,6 +5,7 @@ import store from "./store";
 import Buefy from "buefy";
 import "@/scss/main.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import "@/plugins/axios";
 
 Vue.config.productionTip = false;
 
