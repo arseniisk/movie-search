@@ -6,6 +6,7 @@
     :total="total"
     :per-page="perPage"
     @page-change="onPageChange"
+    :current-page.sync="currentPage"
     aria-next-label="Next page"
     aria-previous-label="Previous page"
     aria-page-label="Page"
@@ -62,18 +63,34 @@ export default {
       total: 0,
       perPage: 10,
       currentPage: 1,
+      lastIndexedText: "",
+      lastIndexedType: "",
     };
   },
   mounted() {},
   methods: {
     onPageChange(page) {
-      console.log(page);
-      this.currentPage = page;
+      // If indexed data has been changed get back to page 1
+      if (!this.handlePageOutOfBounds()) this.currentPage = page;
+
       this.loadMovieList();
     },
     reloadMovies() {
-      console.log(this.searchType)
+      this.handlePageOutOfBounds();
       this.loadMovieList();
+    },
+    // Reset the current page if search criteria has changed (text or filter)
+    handlePageOutOfBounds() {
+      if (
+        this.searchText !== this.lastIndexedText ||
+        this.searchType !== this.lastIndexedType
+      ) {
+        this.currentPage = 1;
+        this.lastIndexedText = this.searchText;
+        this.lastIndexedType = this.searchType;
+        return true;
+      }
+      return false;
     },
   },
 };

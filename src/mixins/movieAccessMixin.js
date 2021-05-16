@@ -11,9 +11,10 @@ export default {
   },
   methods: {
     async loadMovieList() {
+      const searchType = this.searchType === "all" ? "" : this.searchType;
       const moviesResult = await this.omdbApi.getList(
         this.searchText,
-        this.searchType,
+        searchType,
         this.currentPage
       );
 
