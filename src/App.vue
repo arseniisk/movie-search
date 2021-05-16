@@ -1,22 +1,30 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <b-navbar class="is-dark has-background-primary">
+      <template #start>
+        <b-navbar-item tag="span"> Movie Search </b-navbar-item>
+        <b-navbar-item href="#"> Documentation </b-navbar-item>
+        <!-- <b-navbar-dropdown label="Info">
+          <b-navbar-item href="#"> About </b-navbar-item>
+          <b-navbar-item href="#"> Contact </b-navbar-item>
+        </b-navbar-dropdown> -->
+      </template>
+
+      <template #end>
+        <b-navbar-item tag="div"> v1.0 </b-navbar-item>
+      </template>
+    </b-navbar>
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
+    </div> -->
+    <div class="container">
+      <router-view />
     </div>
-    <router-view />
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
 #nav {
   padding: 30px;
 
@@ -28,5 +36,8 @@
       color: #42b983;
     }
   }
+}
+div.container {
+  margin-top: 0.75rem;
 }
 </style>

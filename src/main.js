@@ -12,6 +12,11 @@ Vue.use(Buefy, {
   defaultIconPack: "fas",
 });
 
+// Filters
+Vue.filter("capitalize", function (value) {
+  return value.charAt(0).toUpperCase() + value.slice(1);
+});
+
 new Vue({
   router,
   store,
