@@ -23,7 +23,9 @@ export default class OmdbApi {
 
   async getById(movieId) {
     try {
-      const response = await axios.get(`${this.baseURL}i=${movieId}`);
+      const response = await axios.get(
+        `${this.baseURL}&plot=full&i=${movieId}`
+      );
       return response.data;
     } catch (error) {
       let errorMessage =
