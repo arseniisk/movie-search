@@ -18,17 +18,26 @@ export default {
         this.currentPage
       );
 
-      if (moviesResult.isError) {
-        this.showError(moviesResult.error);
-        return;
-      }
-      if (moviesResult.Response && moviesResult.Response === "False") {
-        this.showError(moviesResult.Error);
-        return;
-      }
+      if (this.handleError(moviesResult)) return;
 
       this.movies = moviesResult.Search;
       this.total = moviesResult.totalResults;
+    },
+    async loadMovie(movieId) {
+      const movieResult = await this.omdbApi.getById(movieId);
+      if (this.handleError(movieResult)) return;
+      this.movie = movieResult.Search;
+    },
+    handleError(result) {
+      if (result.isError) {
+        this.showError(result.error);
+        return true;
+      }
+      if (result.Response && result.Response === "False") {
+        this.showError(result.Error);
+        return true;
+      }
+      return false;
     },
     showError(errorText) {
       this.$buefy.snackbar.open({

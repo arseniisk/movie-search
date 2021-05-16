@@ -23,16 +23,28 @@
         :placeholder="require('@/assets/placeholder.jpg')"
       />
     </b-table-column>
+
     <b-table-column field="Title" label="Title" v-slot="props" width="55%">
       <span class="is-size-4"> {{ props.row.Title }} </span>
     </b-table-column>
+
     <b-table-column field="Type" label="Type" v-slot="props">
       <movie-type-tag :type="props.row.Type" />
     </b-table-column>
+
     <b-table-column field="Year" label="Year" v-slot="props" numeric>
-      <b-tag class="is-info is-light" size="is-medium">{{
-        props.row.Year
-      }}</b-tag>
+      <movie-year-tag :year="props.row.Year"></movie-year-tag>
+    </b-table-column>
+
+    <b-table-column field="imdbID" numeric v-slot="props">
+      <b-button
+        @click="viewMovieDetails(props.row.imdbID)"
+        size="is-small"
+        type="is-primary"
+        outlined
+      >
+        View Details
+      </b-button>
     </b-table-column>
 
     <template #bottom-left>
@@ -45,6 +57,7 @@
 
 <script>
 import MovieTypeTag from "@/components/MovieTypeTag";
+import MovieYearTag from "@/components/MovieYearTag";
 import movieAccessMixin from "@/mixins/movieAccessMixin";
 
 export default {
@@ -56,6 +69,7 @@ export default {
   },
   components: {
     MovieTypeTag,
+    MovieYearTag,
   },
   data() {
     return {
@@ -91,6 +105,9 @@ export default {
         return true;
       }
       return false;
+    },
+    viewMovieDetails(movieId) {
+      console.log(movieId);
     },
   },
 };

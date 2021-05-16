@@ -17,10 +17,25 @@ export default class OmdbApi {
     } catch (error) {
       let errorMessage =
         "An unknown error occured while getting a list of movies from OMDB.";
-      return {
-        isError: true,
-        error: errorMessage,
-      };
+      return this.generateErrorResultObject(errorMessage);
     }
+  }
+
+  async getById(movieId) {
+    try {
+      const response = await axios.get(`${this.baseURL}i=${movieId}`);
+      return response.data;
+    } catch (error) {
+      let errorMessage =
+        "An unknown error occured while getting a movie by ID from OMDB.";
+      return this.generateErrorResultObject(errorMessage);
+    }
+  }
+
+  generateErrorResultObject(errorMessage) {
+    return {
+      isError: true,
+      error: errorMessage,
+    };
   }
 }

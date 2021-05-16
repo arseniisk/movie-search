@@ -2,16 +2,15 @@
   <div id="app">
     <b-navbar class="is-dark has-background-primary">
       <template #start>
-        <b-navbar-item tag="span"> Movie Search </b-navbar-item>
-        <b-navbar-item href="#"> Documentation </b-navbar-item>
-        <!-- <b-navbar-dropdown label="Info">
-          <b-navbar-item href="#"> About </b-navbar-item>
-          <b-navbar-item href="#"> Contact </b-navbar-item>
-        </b-navbar-dropdown> -->
+        <b-navbar-item class="has-text-weight-bold" tag="router-link" to="/">
+          Movie Search
+        </b-navbar-item>
       </template>
 
       <template #end>
-        <b-navbar-item tag="div"> v1.0 </b-navbar-item>
+        <b-navbar-item class="has-text-weight-bold" tag="div">
+          v1.0
+        </b-navbar-item>
       </template>
     </b-navbar>
     <!-- <div id="nav">
